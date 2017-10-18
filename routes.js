@@ -1,7 +1,7 @@
+'use strict';
+
+let hotelController = require('./controllers/hotel.controller');
 
 exports.init = function (app) {
-
-    app.get('/', function (req, res) {
-        res.send('hello world')
-    });
+  app.get('/', hotelController.getList);
 };
