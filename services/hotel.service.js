@@ -2,8 +2,9 @@
 
 const hotelsList = require('../data/hotel.data');
 
-exports.getList = () => {
-  let result = [undefined, undefined];
+exports.getList = (quantity) => {
+  let result = new Array(quantity);
+  result = result.fill(undefined);
   return Promise.resolve(result.map(() => {
     return getHotelByIndex(getRandomHotelIndex());
   }));
