@@ -1,21 +1,17 @@
 'use strict';
 
-const hotelsList = require('../data/hotel.data');
+let hotelsModel = require('../data/hotel.schema');
 
 exports.getList = (quantity) => {
-  let result = new Array(quantity);
-  result = result.fill(undefined);
-  return Promise.resolve(result.map(() => {
-    return getHotelByIndex(getRandomHotelIndex());
-  }));
+  return hotelsModel.count()
+    .then(result => {
+      let randomIndex = getRandomIndex(result - 2);
+      return hotelsModel.find()
+        .skip(randomIndex)
+        .limit(quantity);
+    });
 };
 
-function getRandomHotelIndex() {
-  let max = hotelsList.length - 1;
-  let min = 0;
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getHotelByIndex(index) {
-  return hotelsList[index];
+function getRandomIndex(max) {
+  return Math.floor(Math.random() * (max + 1));
 }

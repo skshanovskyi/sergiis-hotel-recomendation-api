@@ -1,5 +1,11 @@
 {
   "app": {
     "port": 3400
+  },
+  "db": {
+    "uri": "mongodb://localhost:27017/recommends",
+    "opts": {
+      "useMongoClient": true
+    }
   }
 }
